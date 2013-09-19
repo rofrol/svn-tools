@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# http://www.zalas.eu/viewing-svn-diff-result-in-colors
+svn diff "${@}" | colordiff | less -R -F

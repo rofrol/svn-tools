@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+c1=$1
+shift
+c="svn-$c1"
+if command -v $c >/dev/null 2>&1; then
+	c=`which $c`
+	export DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+	export PATH=$(echo $PATH | sed -e "s;:\?$DIR;;" -e "s;$DIR:\?;;")
+	$c "$@"
+else
+	/usr/bin/svn $c1 "$@"
+fi
+

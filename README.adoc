@@ -1,0 +1,4 @@
+should be before path, so svn wrapper can work, i.e. in ~/.bash_profile
+----
+export PATH=$HOME/bin/svn-tools:$PATH
+----

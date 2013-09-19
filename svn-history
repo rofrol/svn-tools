@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# http://stackoverflow.com/questions/282802/how-can-i-view-all-historical-changes-to-a-file-in-svn/283168#283168
+# history_of_file
+#
+# Outputs the full history of a given file as a sequence of
+# logentry/diff pairs.  The first revision of the file is emitted as
+# full text since there's not previous version to compare it to.
+
+function history_of_file() {
+    url=$1 # current url of file
+    /usr/bin/svn log -q -r 16843:17192 $url | grep --color=never -E -e "^r[[:digit:]]+" -o | cut -c2- | sort -n | {
+
+#       first revision as full text
+        echo
+        read r
+        /usr/bin/svn log -r$r $url@HEAD
+        /usr/bin/svn cat -r$r $url@HEAD
+        echo
+
+#       remaining revisions as differences to previous revision
+        while read r
+        do
+            echo
+            /usr/bin/svn log -r$r $url@HEAD
+            /usr/bin/svn diff -c$r $url@HEAD | colordiff
+            echo
+        done
+    }
+}
+
+history_of_file $1
