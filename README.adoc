@@ -5,21 +5,20 @@ Some of my helper commands for svn
 == Usage
 
 Add to ~/.bash_profile
-----
+....
 # IMPORTANT: before PATH
 export PATH=$HOME/svn-tools:$PATH
-----
+....
 
 Then
-----
+....
 source ~/.bash_profile
-----
+....
 
 And you can enjoy new svn commands
-----
+....
 svn diffv # vimdiff
 svn diffc # diff with color
 svn logs  # short log
 svn logc  # log with color
-----
-
+....
