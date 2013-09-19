@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-svn log "${@}" | $DIR/svn-short-log | less -R -F
+svn log "${@}" | $DIR/awk2svn-log | less -R -F
